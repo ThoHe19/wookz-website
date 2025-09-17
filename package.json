@@ -1,0 +1,19 @@
+{
+  "name": "wookz-nft",
+  "version": "1.0.0",
+  "description": "Wookz.NFT - The Ultimate NFT Club Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Static site - served via nginx'"
+  },
+  "keywords": [
+    "nft",
+    "crypto",
+    "blockchain",
+    "web3",
+    "digital-art"
+  ],
+  "author": "Wookz Team",
+  "license": "MIT",
+  "homepage": "https://wookzman.com"
+}

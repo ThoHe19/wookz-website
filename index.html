@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wookz.NFT</title>
+    <meta name="description" content="Join the Wookz Club">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <!-- Navigation -->
+            <div class="hero__nav">
+                <div class="nav__logo">
+                    <img src="assets/images/logo.png" alt="WOOKZ Logo" class="logo">
+                </div>
+                
+                <ul class="nav__menu">
+                    <li class="nav__item">
+                        <a href="#story" class="nav__link">OUR STORY</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#gallery" class="nav__link">GALLERY</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#wanky" class="nav__link">WANKY</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="hero__container">
+                <div class="hero__clubhouse">
+                    <img src="assets/images/clubhouse-main.png" alt="Wookz Clubhouse" class="clubhouse">
+                </div>
+            </div>
+            
+            <!-- NFT Avatar -->
+            <div class="hero__avatar">
+                <a href="#wanky" class="avatar-link">
+                    <img src="assets/images/nft-avatar-main.png" alt="Wookz NFT Avatar" class="avatar">
+                    <div class="speech-bubble">
+                        <p>Hi, I'm Wanky. Get to know me!</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Story Section -->
+        <section class="story" id="story">
+            <div class="container">
+                <h2 class="story__main-title">THE WOOKZCLUB JOURNEY</h2>
+                <p class="story__subtitle">From urban streets to digital realms, discover how WOOKZCLUB is redefining community and creativity.</p>
+                
+                <div class="story__blocks">
+                    <div class="story__block">
+                        <div class="story__block-image">
+                            <img src="assets/images/urban-scene.jpg" alt="Urban Scene" class="story__image">
+                        </div>
+                        <div class="story__block-content">
+                            <h3 class="story__block-title">The Wookzclub Journey 🌱</h3>
+                            <p class="story__block-text">We were among the first projects on Hedera, starting with just 33 Wookz auctioned in Discord—back when there was no marketplace. From those humble beginnings, Wookzclub has grown and endured, proof that strong roots and community can stand the test of time.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story__block">
+                        <div class="story__block-image">
+                            <img src="assets/images/digital-scene.jpg" alt="Digital Scene" class="story__image">
+                        </div>
+                        <div class="story__block-content">
+                            <h3 class="story__block-title">Community at Heart</h3>
+                            <p class="story__block-text">WOOKZCLUB is more than a brand; it's a thriving community of creators, collectors, and innovators. We're united by our love for unique art, our embrace of technology, and our desire to push creative boundaries.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="story__block">
+                        <div class="story__block-image">
+                            <img src="assets/images/community-scene.jpg" alt="Community Scene" class="story__image">
+                        </div>
+                        <div class="story__block-content">
+                            <h3 class="story__block-title">The Future is WOOKZ</h3>
+                            </h3>
+                            <p class="story__block-text">As we continue to grow and evolve, our mission remains clear: to create a space where creativity knows no limits. Join us in shaping the future of digital art and community. Welcome to WOOKZCLUB – where every character has a story, and every member is part of our ever-expanding universe.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery" id="gallery">
+            <div class="container">
+                <h2 class="gallery__title">Wookz Gallery</h2>
+                
+                <div class="gallery__search">
+                    <select id="galleryFilter" class="gallery__filter" onchange="filterGallery()">
+                        <option value="all">All Collections</option>
+                        <option value="gen0">Gen 0 (33)</option>
+                        <option value="gen1">Gen 1 (333)</option>
+                        <option value="pfp">PFP (Coming Soon)</option>
+                    </select>
+                    <input type="text" id="gallerySearch" class="gallery__search-input" placeholder="Search by Serial #" onkeyup="searchGallery()">
+                </div>
+                
+                <div class="gallery__display">
+                    <div class="gallery__main-frame" id="galleryMainFrame">
+                        <div class="gallery__placeholder">
+                            <p>Select a collection and search for a Wookz to view</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WANKY Section -->
+        <section class="wanky" id="wanky">
+            <div class="container">
+                <div class="wanky__header">
+                    <h2 class="wanky__title">WANKY</h2>
+                    <h3 class="wanky__subtitle">and The Wanky Wookz Club</h3>
+                </div>
+                
+                <div class="wanky__image">
+                    <img src="assets/images/wanky-character.png" alt="WANKY AI Bot" class="wanky__character">
+                </div>
+                
+                <div class="wanky__text">
+                    <div class="wanky__story">
+                        <p>
+
+                            Wanky is not just any Wookz—he’s the leader of the Wanky Wookz Club and proud owner of the legendary Wookz Clubhouse.</p>
+                        
+                        <p>Armed with his own Hedera Wallet, Wanky can connect with the community in ways no other Wookz can. Whether it’s through memos on-chain, dropping hot takes on X (Twitter), or hanging out on Discord, Wanky is always around to spark conversations and vibes.</p>
+                        
+                        <p> But Wanky’s mission doesn’t stop there. He’s on a quest to build his own cult-like following, rallying Wookz and friends around his wild ideas and trendsetting energy. If there’s a new wave to ride, chances are Wanky’s already leading it.
+
+                        </p> <p>Always up for a chat. Always ahead of the trend. Always Wanky.</p>
+                    </div>
+                    <div class="wanky__cta">
+                        <a href="https://x.com/WankyWookz" class="btn btn--primary" target="_blank">Follow WANKY on Twitter</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__logo">
+                    <img src="assets/images/logo.png" alt="WOOKZ Logo" class="logo">
+                </div>
+                <div class="footer__links">
+                    <a href="#" class="footer__link">Twitter</a>
+                    <a href="#" class="footer__link">Discord</a>
+                    <a href="#" class="footer__link">Sentx</a>
+                    <a href="#" class="footer__link">Kabila</a>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2024 Wookz.NFT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
