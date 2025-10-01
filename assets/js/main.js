@@ -759,6 +759,14 @@ window.addEventListener('load', function() {
     }
 });
 
+// Mobile menu functions
+function closeMobileMenu() {
+    const navMenu = document.querySelector('.nav__menu');
+    if (navMenu) {
+        navMenu.classList.remove('active');
+    }
+}
+
 // Handle window resize
 window.addEventListener('resize', debounce(function() {
     // Close mobile menu on resize
@@ -766,6 +774,12 @@ window.addEventListener('resize', debounce(function() {
         closeMobileMenu();
     }
 }, 250));
+
+// Notification function
+function showNotification(message, type = 'info') {
+    // Simple console notification for now
+    console.log(`${type.toUpperCase()}: ${message}`);
+}
 
 // Error handling
 window.addEventListener('error', function(e) {
