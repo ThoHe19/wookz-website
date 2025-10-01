@@ -214,10 +214,268 @@ section {
     overflow: hidden;
 }
 
+
 .hero__container {
     text-align: center;
     position: relative;
     z-index: 2;
+}
+
+/* Mystery Reveal Button */
+.mystery-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+}
+
+.mystery-portal {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+.mystery-portal:hover {
+    transform: scale(1.05);
+}
+
+.portal-image {
+    width: 400px;
+    height: auto;
+    max-width: 100%;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
+    animation: portalGlow 3s ease-in-out infinite alternate, portalFloat 4s ease-in-out infinite;
+}
+
+.portal-image:hover {
+    filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.8)) drop-shadow(0 0 40px rgba(0, 204, 255, 0.6));
+}
+
+@keyframes portalGlow {
+    0% { 
+        filter: drop-shadow(0 0 20px rgba(0, 255, 136, 0.5));
+    }
+    100% { 
+        filter: drop-shadow(0 0 30px rgba(0, 255, 136, 0.8)) drop-shadow(0 0 40px rgba(0, 204, 255, 0.6));
+    }
+}
+
+@keyframes portalFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg);
+    }
+    25% { 
+        transform: translateY(-10px) rotate(0.5deg);
+    }
+    50% { 
+        transform: translateY(-5px) rotate(0deg);
+    }
+    75% { 
+        transform: translateY(-15px) rotate(-0.5deg);
+    }
+}
+
+/* Countdown Overlay */
+.countdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+}
+
+.countdown-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.countdown-reveal {
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.5s ease;
+}
+
+.countdown-overlay.active .countdown-reveal {
+    transform: scale(1);
+}
+
+.countdown-dramatic-text {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 3rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+    animation: dramaticGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes dramaticGlow {
+    0% { text-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+    100% { text-shadow: 0 0 30px rgba(102, 126, 234, 1), 0 0 40px rgba(118, 75, 162, 0.6); }
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.countdown-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.countdown-number {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(102, 126, 234, 0.8);
+}
+
+.countdown-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Ambient Timer */
+.ambient-timer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    border-radius: 12px;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(100px);
+    transition: all 0.3s ease;
+}
+
+.ambient-timer.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.ambient-header {
+    margin-bottom: 0.5rem;
+}
+
+.timezone-selector {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.3);
+    border-radius: 6px;
+    color: #ffffff;
+    font-family: 'Orbitron', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    padding: 0.3rem 0.5rem;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+    transition: all 0.3s ease;
+}
+
+.timezone-selector:hover {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: rgba(0, 255, 136, 0.5);
+    text-shadow: 0 0 12px rgba(0, 255, 136, 1);
+}
+
+.timezone-selector option {
+    background: #000000;
+    color: #ffffff;
+    padding: 0.5rem;
+}
+
+.ambient-countdown {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+    text-shadow: 
+        0 0 10px rgba(0, 255, 136, 0.8),
+        0 0 20px rgba(0, 255, 136, 0.4),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.ambient-countdown span {
+    color: #00ff88;
+    font-weight: 900;
+    text-shadow: 
+        0 0 15px rgba(0, 255, 136, 1),
+        0 0 30px rgba(0, 255, 136, 0.6),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.launch-info {
+    text-align: center;
+}
+
+.launch-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.launch-time {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #00ff88;
+    text-shadow: 
+        0 0 10px rgba(0, 255, 136, 0.8),
+        0 0 20px rgba(0, 255, 136, 0.4),
+        1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -227,6 +485,8 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 

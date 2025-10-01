@@ -57,6 +57,43 @@
         font-size: 1.1rem;
     }
     
+    .portal-image {
+        width: 300px;
+    }
+    
+    .countdown-dramatic-text {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+    
+    .countdown-timer {
+        gap: 1rem;
+    }
+    
+    .countdown-item {
+        min-width: 80px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .countdown-label {
+        font-size: 0.8rem;
+    }
+    
+    .ambient-timer {
+        top: 10px;
+        right: 10px;
+        padding: 0.8rem 1rem;
+    }
+    
+    .ambient-countdown {
+        font-size: 0.8rem;
+    }
+    
+    
     .story__main-title {
         font-size: 2rem;
     }

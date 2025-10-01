@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wookz.NFT</title>
+    <link rel="icon" href="assets/images/W_Tex.png" type="image/png">
     <meta name="description" content="Join the Wookz Club">
     
     <!-- CSS -->
@@ -43,6 +44,62 @@
             <div class="hero__container">
                 <div class="hero__clubhouse">
                     <img src="assets/images/clubhouse-main.png" alt="Wookz Clubhouse" class="clubhouse">
+                    
+                    <!-- Mystery Reveal Portal -->
+                    <div class="mystery-section">
+                        <button class="mystery-portal" id="revealButton">
+                            <img src="assets/images/GalaxyMadness_porta2l.png" alt="Galaxy Madness Portal" class="portal-image">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Countdown Overlay (Hidden Initially) -->
+            <div class="countdown-overlay" id="countdownOverlay">
+                <div class="countdown-reveal">
+                    <h2 class="countdown-dramatic-text">Time until liftoff...</h2>
+                    <div class="countdown-timer" id="countdownTimer">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">00</span>
+                            <span class="countdown-label">Days</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Hours</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minutes</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Seconds</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ambient Timer (Hidden Initially) -->
+            <div class="ambient-timer" id="ambientTimer">
+                <div class="ambient-header">
+                    <select class="timezone-selector" id="timezoneSelector">
+                        <option value="berlin">🌍 Berlin</option>
+                        <option value="nyc">🗽 New York</option>
+                        <option value="tokyo">🗼 Tokyo</option>
+                        <option value="london">🏰 London</option>
+                        <option value="sydney">🦘 Sydney</option>
+                        <option value="la">🌴 Los Angeles</option>
+                    </select>
+                </div>
+                <div class="ambient-countdown">
+                    <span id="ambientDays">00</span>d
+                    <span id="ambientHours">00</span>h
+                    <span id="ambientMinutes">00</span>m
+                    <span id="ambientSeconds">00</span>s
+                </div>
+                <div class="launch-info">
+                    <div class="launch-text">Galaxy Madness launches at:</div>
+                    <div class="launch-time" id="launchTime">--:--</div>
                 </div>
             </div>
             

@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollEffects();
     initAnimations();
     initGallery();
+    initMysteryCountdown();
 });
 
 
@@ -771,6 +772,204 @@ window.addEventListener('error', function(e) {
     console.error('JavaScript error:', e.error);
     showNotification('An error occurred. Please refresh the page.', 'error');
 });
+
+// Mystery Countdown System
+function initMysteryCountdown() {
+    const revealButton = document.getElementById('revealButton');
+    const countdownOverlay = document.getElementById('countdownOverlay');
+    const ambientTimer = document.getElementById('ambientTimer');
+    const timezoneSelector = document.getElementById('timezoneSelector');
+    
+    // Set the target date: October 16, 2025 at 23:59:59 German Time (CET/CEST)
+    const targetDate = new Date('2025-10-16T23:59:59+02:00'); // German Summer Time (CEST)
+    
+    // Timezone mapping
+    const timezones = {
+        berlin: 'Europe/Berlin',
+        nyc: 'America/New_York',
+        tokyo: 'Asia/Tokyo',
+        london: 'Europe/London',
+        sydney: 'Australia/Sydney',
+        la: 'America/Los_Angeles'
+    };
+    
+    let countdownInterval;
+    let ambientInterval;
+    let isRevealed = false;
+    
+    // Timezone selector change handler
+    timezoneSelector.addEventListener('change', function() {
+        updateTimezoneDisplays();
+    });
+    
+    // Reveal button click handler
+    revealButton.addEventListener('click', function() {
+        if (isRevealed) return;
+        
+        // Play spacey sound effect (placeholder - you can add actual audio later)
+        playSpaceySound();
+        
+        // Hide the reveal button
+        revealButton.style.opacity = '0';
+        revealButton.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        
+        // Show countdown overlay with blur effect
+        setTimeout(() => {
+            countdownOverlay.classList.add('active');
+            startCountdown();
+        }, 300);
+        
+        isRevealed = true;
+    });
+    
+    function playSpaceySound() {
+        // Placeholder for spacey sound effect
+        // You can add actual audio here later
+        console.log('🔊 Playing spacey sound effect...');
+        
+        // Create a simple audio context for a spacey tone
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+            oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 1);
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 1);
+        } catch (e) {
+            console.log('Audio not supported or blocked');
+        }
+    }
+    
+    function startCountdown() {
+        // Start main countdown
+        countdownInterval = setInterval(updateMainCountdown, 1000);
+        updateMainCountdown();
+        
+        // Start ambient countdown after 3 seconds
+        setTimeout(() => {
+            startAmbientMode();
+        }, 3000);
+    }
+    
+    function updateMainCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate.getTime() - now;
+        
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            showCountdownFinished();
+            return;
+        }
+        
+        const timeValues = calculateTimeValues(distance);
+        updateCountdownDisplay(timeValues);
+    }
+    
+    function startAmbientMode() {
+        // Hide main countdown overlay
+        countdownOverlay.classList.remove('active');
+        
+        // Show ambient timer
+        ambientTimer.classList.add('active');
+        
+        // Start ambient countdown
+        ambientInterval = setInterval(updateAmbientCountdown, 1000);
+        updateAmbientCountdown();
+    }
+    
+    function updateAmbientCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate.getTime() - now;
+        
+        if (distance < 0) {
+            clearInterval(ambientInterval);
+            showAmbientFinished();
+            return;
+        }
+        
+        const timeValues = calculateTimeValues(distance);
+        updateAmbientDisplay(timeValues);
+        updateTimezoneDisplays();
+    }
+    
+    function calculateTimeValues(distance) {
+        return {
+            days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+            minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+            seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        };
+    }
+    
+    function updateCountdownDisplay(timeValues) {
+        document.getElementById('days').textContent = timeValues.days.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = timeValues.hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = timeValues.minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = timeValues.seconds.toString().padStart(2, '0');
+    }
+    
+    function updateAmbientDisplay(timeValues) {
+        document.getElementById('ambientDays').textContent = timeValues.days.toString().padStart(2, '0');
+        document.getElementById('ambientHours').textContent = timeValues.hours.toString().padStart(2, '0');
+        document.getElementById('ambientMinutes').textContent = timeValues.minutes.toString().padStart(2, '0');
+        document.getElementById('ambientSeconds').textContent = timeValues.seconds.toString().padStart(2, '0');
+    }
+    
+    function showCountdownFinished() {
+        const dramaticText = document.querySelector('.countdown-dramatic-text');
+        dramaticText.textContent = 'Galaxy Madness Has Begun! 🚀';
+        dramaticText.style.animation = 'dramaticGlow 0.5s ease-in-out infinite alternate';
+    }
+    
+    function updateTimezoneDisplays() {
+        const selectedTimezone = timezoneSelector.value;
+        const timezone = timezones[selectedTimezone];
+        
+        // Show the launch time (targetDate) in the selected timezone
+        const launchTime = targetDate.toLocaleString('en-US', {
+            timeZone: timezone,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        
+        // Update the display element
+        const launchTimeElement = document.getElementById('launchTime');
+        if (launchTimeElement) {
+            launchTimeElement.textContent = launchTime;
+        }
+    }
+    
+    function showAmbientFinished() {
+        const ambientCountdown = document.querySelector('.ambient-countdown');
+        ambientCountdown.innerHTML = '<span style="color: #ff6b6b;">🚀 LIFTOFF!</span>';
+        
+        // Hide launch info when finished
+        const launchInfo = document.querySelector('.launch-info');
+        if (launchInfo) {
+            launchInfo.style.display = 'none';
+        }
+        
+        // Hide timezone selector when finished
+        const timezoneSelector = document.querySelector('.timezone-selector');
+        if (timezoneSelector) {
+            timezoneSelector.style.display = 'none';
+        }
+    }
+}
 
 // Export functions for global access
 window.buyNFT = buyNFT;
